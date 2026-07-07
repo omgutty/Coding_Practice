@@ -12,7 +12,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("Input: ", (answer) => {
+rl.question("Input:", (answer) => {
    let vowels = 0
    let consonants = 0
 
