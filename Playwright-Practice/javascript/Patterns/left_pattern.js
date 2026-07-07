@@ -13,6 +13,14 @@ const rl=readline.createInterface({
 
 rl.question("Input: ", (answer)=>{
     const num=parseInt(answer);
-    
+
+    for (let i=answer; i>=1; i--){
+        let pattern = "";
+        for (let j=1;j<=i;j++){
+            pattern += "*";
+        }
+
+    console.log(pattern);
+    }
 
 });

@@ -18,7 +18,7 @@ rl.question("Input: ", (answer)=>{
         let pattern = "";
         for(let j=1;j<=i;j++){
               pattern += "*";
-        }
+            }
         console.log(pattern);
     }
 rl.close();
