@@ -326,57 +326,86 @@ Provides access to newer TypeScript language features before they are included i
 
 ---
 
-# 8️⃣ Recommended Project Structure
+# 8️⃣ 📂 Actual Project Structure
 
 ```text
 Playwright-Practice/
 │
 ├── node_modules/
 │
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
+│
 ├── javascript/
-│   ├── variables.js
-│   ├── arrays.js
-│   ├── objects.js
-│   ├── functions.js
-│   ├── promises.js
-│   └── async-await.js
+│   │
+│   ├── Basic/
+│   │   ├── Basic_IO.js
+│   │   └── FizzBuzz.js
+│   │
+│   ├── Patterns/
+│   │   ├── Pyramid_Pattern.js
+│   │   ├── RTStar_Pattern.js
+│   │   └── left_pattern.js
+│   │
+│   └── strings/
+│       └── Count Vowels and Consonants.js
 │
-├── typescript/
-│   ├── interfaces.ts
-│   ├── classes.ts
-│   ├── enums.ts
-│   ├── generics.ts
-│   ├── decorators.ts
-│   └── utility-types.ts
+├── typescript/               (coming soon)
 │
-├── playwright/
-│   ├── locators.spec.ts
-│   ├── assertions.spec.ts
-│   ├── fixtures.spec.ts
-│   ├── hooks.spec.ts
-│   ├── api.spec.ts
-│   └── pom.spec.ts
+├── playwright/               (coming soon)
 │
 ├── tests/
+│   └── example.spec.ts
+│
+├── playwright-report/
+│
+├── test-results/
 │
 ├── package.json
+├── package-lock.json
 ├── tsconfig.json
 ├── playwright.config.ts
 └── README.md
 ```
 
-### Why organize the project this way?
+---
 
-Keeping concepts separated makes it easier to:
+# 9️⃣ 🧩 Programs Added So Far
 
-* Revise topics independently
-* Locate examples quickly
-* Scale the project over time
-* Maintain clean code
+### 📘 JavaScript Basics
+
+| # | Program | File | What it does |
+|---|---------|------|-------------|
+| 1 | **Greeting Program** | `javascript/Basic/Basic_IO.js` | Takes a name as input and prints "Hello, [name]!" |
+| 2 | **Multiplication Table** | `javascript/Basic/Basic_IO.js` | Prints the multiplication table (1–10) for a given number |
+| 3 | **FizzBuzz** | `javascript/Basic/FizzBuzz.js` | Prints numbers 1 to n; multiples of 3 → "Fizz", 5 → "Buzz", both → "FizzBuzz" |
+
+### ⭐ Star Pattern Programs
+
+| # | Program | File | Pattern (Input: 3) |
+|---|---------|------|-------------------|
+| 4 | **Pyramid Pattern** | `javascript/Patterns/Pyramid_Pattern.js` | Centered pyramid with odd-numbered stars per row |
+| 5 | **Right-Angle Triangle** | `javascript/Patterns/RTStar_Pattern.js` | Left-aligned triangle where row i has i stars |
+| 6 | **Reverse Triangle** | `javascript/Patterns/left_pattern.js` | Descending triangle starting with n stars down to 1 |
+
+### 🔤 String Programs
+
+| # | Program | File | What it does |
+|---|---------|------|-------------|
+| 7 | **Count Vowels and Consonants** | `javascript/strings/Count Vowels and Consonants.js` | *(coming soon — file created, program pending)* |
 
 ---
 
-# 9️⃣ Add Useful npm Scripts
+### How the programs are organized
+
+**javascript/Basic/** — Fundamental programming logic (IO, loops, conditionals)
+**javascript/Patterns/** — Star pattern printing using nested loops
+**javascript/strings/** — String manipulation exercises
+
+---
+
+# 🔟 Add Useful npm Scripts
 
 Update the `scripts` section in `package.json`.
 
@@ -424,7 +453,7 @@ npm run report
 
 ---
 
-# 🔟 Useful TypeScript Commands
+# 1️⃣1️⃣ Useful TypeScript Commands
 
 Compile all TypeScript files:
 
@@ -478,7 +507,7 @@ Execute
 
 ---
 
-# 1️⃣1️⃣ Install ESLint and Prettier
+# 1️⃣2️⃣ Install ESLint and Prettier
 
 Install both tools as development dependencies.
 
@@ -510,7 +539,7 @@ Benefits include:
 
 ---
 
-# 1️⃣2️⃣ Final Installation Commands
+# 1️⃣3️⃣ Final Installation Commands
 
 Run the following commands in order to set up the entire workspace.
 
