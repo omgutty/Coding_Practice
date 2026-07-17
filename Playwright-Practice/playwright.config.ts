@@ -36,18 +36,38 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      //use: { ...devices['Desktop Chrome'] },
+use: {
+
+    browserName: 'chromium',
+
+    viewport: {
+        width: 1920,
+        height: 1080
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+    headless: false
+}
+
+    //    use: {
+    //   ...devices['Desktop Chrome'],
+    //   viewport: null,
+    //   deviceScaleFactor: undefined,
+    //   launchOptions: {
+    //     args: ['--start-maximized'],
+    //   },
+    // },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
+
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
