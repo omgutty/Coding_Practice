@@ -23,3 +23,4 @@ string1.question("input:",(word)=>{
     console.log(reverseword)
     string1.close();
 })
+
