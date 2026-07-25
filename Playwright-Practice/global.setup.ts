@@ -1,16 +1,3 @@
-/**
- * 1. You have 100 test cases, and every one of them
-requires login. How would you avoid repeating the
-login code?
-What the interviewer is testing
-Reusability
-Framework design
-Authentication strategies
-Best Approach
-Use Storage State (recommended), Fixtures, or Global Setup so the login happens only once.
-global.setup.ts
-
- */
 import { chromium } from '@playwright/test';
 
 async function globalSetup() {

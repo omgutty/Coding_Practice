@@ -25,11 +25,12 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-   globalSetup: './global.setup.ts',
+  // globalSetup: './global.setup.ts',
  
   use: {
-    baseURL: 'https://www.saucedemo.com',
-    storageState: 'playwright/.auth/user.json',
+    //baseURL: 'https://www.saucedemo.com',
+   // baseURL: 'https://www.saucedemo.com',
+   // storageState: 'playwright/.auth/user.json',
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
