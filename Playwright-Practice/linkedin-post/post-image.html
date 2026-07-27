@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core JS Refresher - Test Automation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #08080f;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        .card {
+            width: 1200px;
+            height: 675px;
+            background: radial-gradient(ellipse at 20% 30%, #111127 0%, #0a0a14 60%, #06060e 100%);
+            border-radius: 28px;
+            padding: 44px 52px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        /* Enhanced gradient orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            top: -200px;
+            right: -200px;
+            opacity: 0.12;
+            animation: drift 12s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            bottom: -150px;
+            left: -100px;
+            opacity: 0.10;
+            animation: drift 14s ease-in-out infinite reverse;
+        }
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            top: 45%;
+            right: 20%;
+            opacity: 0.08;
+            animation: drift 8s ease-in-out infinite 3s;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(20px, -25px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* Top accent bar - more professional */
+        .accent-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 2;
+        }
+        .accent-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #818cf8;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+        }
+        .accent-line {
+            flex: 1;
+            height: 1.5px;
+            background: linear-gradient(90deg, #6366f1, rgba(99, 102, 241, 0.1));
+            max-width: 160px;
+        }
+        .badge {
+            padding: 5px 16px;
+            border-radius: 18px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 44px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.12;
+            margin-bottom: 6px;
+            max-width: 75%;
+        }
+        .title .highlight {
+            background: linear-gradient(135deg, #818cf8 0%, #22d3ee 60%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-bottom: 28px;
+            max-width: 60%;
+        }
+
+        /* Framework concept cards - redesigned with premium look */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 16px 18px;
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .concept-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .concept-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-3px);
+        }
+        .concept-card:hover::before {
+            opacity: 1;
+        }
+
+        .concept-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .concept-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        .concept-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .concept-desc {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .concept-desc code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            background: rgba(99, 102, 241, 0.1);
+            color: #a5b4fc;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+        /* Application tag */
+        .app-tag {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.08);
+            letter-spacing: 0.3px;
+        }
+        .app-tag.test {
+            color: #22d3ee;
+            background: rgba(34, 211, 238, 0.08);
+        }
+        .app-tag.data {
+            color: #a78bfa;
+            background: rgba(167, 139, 250, 0.08);
+        }
+        .app-tag.ci {
+            color: #34d399;
+            background: rgba(52, 211, 153, 0.08);
+        }
+
+        /* Bottom section - refined */
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            position: relative;
+            z-index: 2;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .hashtag {
+            padding: 3px 10px;
+            border-radius: 10px;
+            background: rgba(99, 102, 241, 0.08);
+            color: #818cf8;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .quote {
+            font-size: 13px;
+            color: #64748b;
+            font-style: italic;
+            max-width: 420px;
+            text-align: right;
+            padding-left: 14px;
+            border-left: 2px solid rgba(99, 102, 241, 0.2);
+        }
+        .quote strong {
+            color: #a5b4fc;
+            font-style: normal;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid"></div>
+
+        <div class="accent-bar">
+            <div class="accent-dot"></div>
+            <div class="accent-line"></div>
+            <span class="badge">SDET · Framework Design</span>
+        </div>
+
+        <div class="content">
+            <h1 class="title">
+                Core JS Concepts<br><span class="highlight">Applied in Test Automation</span>
+            </h1>
+            <p class="subtitle">Revisiting fundamentals that power clean framework design and reliable test scripts</p>
+
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <div class="concept-icon">🔄</div>
+                        <div class="concept-name">String Reversal</div>
+                    </div>
+                    <div class="concept-desc">Two-pointer &amp; preserve white spaces. <code>O(n)</code> in-place manipulation.</div>
+                    <div class="app-tag test">test data formatting</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <div class="concept-icon">📊</div>
+                        <div class="concept-name">Character Frequency</div>
+                    </div>
+                    <div class="concept-desc"><code>for...of</code> vs <code>for...in</code>. Object as hash map for parsing.</div>
+                    <div class="app-tag data">log / payload analysis</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <div class="concept-icon">🔢</div>
+                        <div class="concept-name">Version Comparison</div>
+                    </div>
+                    <div class="concept-desc"><code>.split()</code> → <code>Number()</code>. Handles <code>"03"</code> vs <code>3</code> correctly.</div>
+                    <div class="app-tag ci">CI/CD version checks</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <div class="concept-icon">🆔</div>
+                        <div class="concept-name">Duplicate Detection</div>
+                    </div>
+                    <div class="concept-desc"><code>Set.has()</code> O(1) vs <code>includes()</code> O(n). Scale matters.</div>
+                    <div class="app-tag data">large dataset dedup</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <div class="concept-icon">✨</div>
+                        <div class="concept-name">Spread Operator</div>
+                    </div>
+                    <div class="concept-desc"><code>[...set]</code> → one-liner dedup. Set to Array conversion.</div>
+                    <div class="app-tag test">test data cleanup</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-header">
+                        <div class="concept-icon">⚙️</div>
+                        <div class="concept-name">Two-Pointer Technique</div>
+                    </div>
+                    <div class="concept-desc">Clean, single-pass. Minimal memory footprint.</div>
+                    <div class="app-tag test">in-place string ops</div>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="hashtags">
+                    <span class="hashtag">#TestAutomation</span>
+                    <span class="hashtag">#SDET</span>
+                    <span class="hashtag">#Playwright</span>
+                    <span class="hashtag">#JavaScript</span>
+                    <span class="hashtag">#TypeScript</span>
+                </div>
+                <div class="quote">
+                    &ldquo;The tool changes. But <strong>loops, data structures, and operators</strong> stay the same. Polish them.&rdquo;
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
