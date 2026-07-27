@@ -1,5 +1,5 @@
 /**
- * Write a Java program to reverse a given string.
+ * Write a JS program to reverse a given string.
 
 Input: Java
 Output: avaJ
@@ -23,4 +23,6 @@ string1.question("input:",(word)=>{
     console.log(reverseword)
     string1.close();
 })
+//navigate to String folder and run node StringReverse.js
+
 
