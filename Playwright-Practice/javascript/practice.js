@@ -16,3 +16,33 @@ for (let i=1;i<arr.length;i++){
 }
 
 console.log(largest2)
+
+//smallest 
+
+let arr2= [12,3,4,5,6,7]
+let smallest = arr2 [0]
+
+for (let i =1;i <arr2.length;i++){
+    if (arr2[i]<smallest){
+        smallest=arr2[i]
+    }
+}
+
+console.log(smallest)
+
+//ermove duplicate 
+let arr3 = [1, 2, 2, 3, 4, 4, 5];
+console.log([...new Set(arr3)]);
+
+//count vowels
+
+let str= "playwright"
+let count= 0;
+
+for  (let ch of str){
+    if("aeiou".includes(ch.toLowerCase())){
+        count++;
+    }
+}
+
+console.log(count)
