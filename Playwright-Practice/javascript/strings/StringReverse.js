@@ -26,3 +26,5 @@ string1.question("input:",(word)=>{
 //navigate to String folder and run node StringReverse.js
 
 
+let str= "playwright"
+console.log(str.split("").reverse().join(""))
