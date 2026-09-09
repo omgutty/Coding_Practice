@@ -53,7 +53,7 @@ n = 1
 // ------------------------------
 
 // Input string — each character will be visited one by one via for...of
-let str = "automation";
+let str = "automation   ";
 // Empty object to store character counts { char: count, ... }
 let count = {};
 

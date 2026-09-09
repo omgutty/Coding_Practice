@@ -236,3 +236,11 @@ let count3 = [...str2].reduce((map, ch) => {
 }, new Map());
 
 console.log(count3); // Map(4) { 'h' => 1, 'e' => 1, 'l' => 2, 'o' => 1 }
+
+//find second largest
+
+let arr11 = [10, 5, 20, 8, 20, 15];
+
+let unique = [...new Set(arr11)].sort((a, b) => b - a);
+
+console.log(unique[1]);
